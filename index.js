@@ -2,8 +2,8 @@ const express = require('express');
 
 const app = express();
 
-app.get('/api', (req, res) => {
-  res.send({ text: "What's up baby!" });
+app.get('/api/message', (req, res) => {
+  res.send({ text: 'This is a message from the server side' });
 });
 
 const PORT = process.env.PORT || 5000;
