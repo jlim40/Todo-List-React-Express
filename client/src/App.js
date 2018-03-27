@@ -22,6 +22,7 @@ class App extends Component {
     const res = await fetch('/api/message');
     const json = await res.json();
     console.log(json.text);
+    console.log(json);
     this.setState({
       message: json.text,
       fetching: false
@@ -36,7 +37,7 @@ class App extends Component {
           <h1 className="App-title">Hey there!!!</h1>
           <h4>
             {this.state.fetching
-              ? 'Fetching Message from API'
+              ? '------- Fetching Message from API -------'
               : this.state.message}
           </h4>
         </header>
