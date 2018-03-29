@@ -38,13 +38,13 @@ class App extends Component {
     const { input, todos, color } = this.state;
     this.setState({
       input: '', // empty the input
-      color: color,
       // Add it to the array using concat
       // concat creates a new array
       todos: todos.concat({
         id: this.id++,
         text: input,
-        checked: false
+        checked: false,
+        color
       })
     });
   };
@@ -121,7 +121,6 @@ class App extends Component {
           todos={todos}
           handleToggle={handleToggle}
           handleRemove={handleRemove}
-          color={color}
         />
       </TodoListTemplate>
     );

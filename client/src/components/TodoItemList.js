@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import TodoItem from './TodoItem';
 
 class TodoItemList extends Component {
-
   shouldComponentUpdate(nextProps, nextState) {
     return this.props.todos !== nextProps.todos;
   }
@@ -13,9 +12,9 @@ class TodoItemList extends Component {
       onToggle: A function that toggles checkbox
       onRemove: A function that deletes an todo-item
     */
-    const { todos, handleToggle, handleRemove, color } = this.props;
+    const { todos, handleToggle, handleRemove } = this.props;
     // Destructuring properties from each item in the todos array
-    const todoList = todos.map(({id, text, checked}) =>
+    const todoList = todos.map(({ id, text, checked, color }) => (
       <TodoItem
         id={id}
         text={text}
@@ -25,13 +24,9 @@ class TodoItemList extends Component {
         handleRemove={handleRemove}
         key={id}
       />
-    );
+    ));
 
-    return (
-      <div>
-        {todoList}
-      </div>
-    );
+    return <div>{todoList}</div>;
   }
 }
 
