@@ -27,15 +27,9 @@ class App extends Component {
   }
 
   async componentDidMount() {
-    console.log('cdm start');
     const response = await axios.get('/api/todo');
     const todos = await response.data;
-    console.log('response');
-    console.log(response);
-    console.log('todos');
-    console.log(todos);
     this.setState({ todos: todos });
-    console.log('cdm finished');
   }
 
   handleChange = e => {
@@ -49,25 +43,22 @@ class App extends Component {
       content: input,
       color
     };
+    if (input !== '') {
+      const response = await axios.post('/api/todo', todoData);
+      const todo = await response.data;
 
-    console.log('handle create start');
-    const response = await axios.post('/api/todo', todoData);
-    console.log(response);
-    const todo = await response.data;
-    console.log(todo);
-    console.log('handle create finish');
-
-    this.setState({
-      input: '', // empty the input
-      // Add it to the array using concat
-      // concat creates a new array
-      todos: todos.concat({
-        _id: todo._id,
-        content: todo.content,
-        checked: todo.checked,
-        color: todo.color
-      })
-    });
+      this.setState({
+        input: '', // empty the input
+        // Add it to the array using concat
+        // concat creates a new array
+        todos: todos.concat({
+          _id: todo._id,
+          content: todo.content,
+          checked: todo.checked,
+          color: todo.color
+        })
+      });
+    }
   };
 
   handleKeyPress = e => {
@@ -88,7 +79,6 @@ class App extends Component {
       checked: !selected.checked
     };
 
-    console.log(nextTodos[index]);
     const response = await axios.put('/api/todo', nextTodos[index]);
     if (!response.error) {
       this.setState({

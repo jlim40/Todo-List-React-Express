@@ -4,7 +4,8 @@ const { Schema } = mongoose;
 const todoSchema = new Schema({
   content: {
     type: 'string',
-    require: true
+    required: true,
+    match: /[a-zA-Z0-9]+/
   },
   color: String,
   checked: {
