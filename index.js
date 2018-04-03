@@ -4,7 +4,10 @@ const keys = require('./config/keys');
 const bodyParser = require('body-parser');
 require('./models/Todo');
 
-mongoose.connect(keys.mongoURI);
+console.log('keys.mongoURI', keys.mongoURI);
+mongoose.connect(keys.mongoURI, err => {
+  console.log(err);
+});
 
 const app = express();
 app.use(bodyParser.json());
