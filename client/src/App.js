@@ -27,9 +27,15 @@ class App extends Component {
   }
 
   async componentDidMount() {
+    console.log('cdm start');
     const response = await axios.get('/api/todo');
     const todos = await response.data;
+    console.log('response');
+    console.log(response);
+    console.log('todos');
+    console.log(todos);
     this.setState({ todos: todos });
+    console.log('cdm finished');
   }
 
   handleChange = e => {
@@ -43,9 +49,14 @@ class App extends Component {
       content: input,
       color
     };
+
     if (input !== '') {
+      console.log('handle create start');
       const response = await axios.post('/api/todo', todoData);
+      console.log(response);
       const todo = await response.data;
+      console.log(todo);
+      console.log('handle create finish');
 
       this.setState({
         input: '', // empty the input
@@ -79,6 +90,7 @@ class App extends Component {
       checked: !selected.checked
     };
 
+    console.log(nextTodos[index]);
     const response = await axios.put('/api/todo', nextTodos[index]);
     if (!response.error) {
       this.setState({
