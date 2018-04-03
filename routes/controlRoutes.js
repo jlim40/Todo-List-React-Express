@@ -14,10 +14,10 @@ module.exports = app => {
 
     // Create an instance of model SomeModel
     const todoData = { content, color };
-    const todo = await new Todo(todoData).save(err => {
+    await new Todo(todoData).save((err, todo) => {
       if (err) return res.send('Some error occured!');
+      res.send(todo);
     });
-    res.send(todo);
   });
 
   // Delete an item
