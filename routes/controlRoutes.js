@@ -6,7 +6,6 @@ module.exports = app => {
   app.get('/api/todo', async (req, res) => {
     const todos = await Todo.find({}, (err, todos) => {
       if (err) {
-        console.log(err);
         res.status(500).json(err);
       }
       res.send(todos);
@@ -35,9 +34,6 @@ module.exports = app => {
     }
     Todo.findByIdAndRemove(req.params.id, (err, todo) => {
       if (err) throw err;
-      console.log('findbyId start');
-      console.log(todo);
-      console.log('findbyId start');
       res.send({ success: true });
     });
   });
@@ -45,7 +41,6 @@ module.exports = app => {
   // Toggle 'checked'
   app.put('/api/todo', async (req, res) => {
     const { _id, checked } = req.body;
-    console.log(_id, checked, 'zzz');
     Todo.findOneAndUpdate({ _id }, { checked }, (err, todo) => {
       if (err) {
         return res.status(500).json({
