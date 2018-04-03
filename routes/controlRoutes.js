@@ -14,7 +14,9 @@ module.exports = app => {
 
     // Create an instance of model SomeModel
     const todoData = { content, color };
-    const todo = await new Todo(todoData).save();
+    const todo = await new Todo(todoData).save(err => {
+      if (err) return res.send('Some error occured!');
+    });
     res.send(todo);
   });
 
