@@ -14,15 +14,15 @@ class TodoItemList extends Component {
     */
     const { todos, handleToggle, handleRemove } = this.props;
     // Destructuring properties from each item in the todos array
-    const todoList = todos.map(({ id, text, checked, color }) => (
+    const todoList = todos.map(({ _id, color, content, checked }) => (
       <TodoItem
-        id={id}
-        text={text}
+        id={_id}
+        content={content}
         checked={checked}
         color={color}
         handleToggle={handleToggle}
         handleRemove={handleRemove}
-        key={id}
+        key={_id}
       />
     ));
 

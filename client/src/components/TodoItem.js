@@ -14,23 +14,29 @@ class TodoItem extends Component {
       handleToggle: A function that toggles checkbox
       handleToggle: A function that deletes an todo-item
     */
-    const { text, checked, id, color, handleToggle, handleRemove } = this.props;
-    console.log(color);
+    const {
+      content,
+      checked,
+      id,
+      color,
+      handleToggle,
+      handleRemove
+    } = this.props;
     return (
       <div className="todo-item" onClick={() => handleToggle(id)}>
         <div
           className="remove"
           onClick={e => {
-            e.stopPropagation(); // onToggle does not get called
+            e.stopPropagation(); // Prevents from calling onToggle
             handleRemove(id);
           }}
         >
           &times;
         </div>
         <div style={{ color }} className={`todo-text ${checked && 'checked'}`}>
-          <div>{text}</div>
+          <div>{content}</div>
         </div>
-        {checked && <div className="check-mark">&#x2713;</div>}
+        {checked && <div className="check-mark">✓</div>}
       </div>
     );
   }

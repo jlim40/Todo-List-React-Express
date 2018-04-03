@@ -1,10 +1,15 @@
 const express = require('express');
+const mongoose = require('mongoose');
+const keys = require('./config/keys');
+const bodyParser = require('body-parser');
 
 const app = express();
+app.use(bodyParser.json());
 
-app.get('/api/message', (req, res) => {
-  res.send({ text: 'This is a message from the server side' });
-});
+require('./models/Todo');
+require('./routes/controlRoutes')(app);
+
+mongoose.connect(keys.mongoURI);
 
 if (process.env.NODE_ENV === 'production') {
   // Express will serve up production assets
