@@ -3,8 +3,7 @@ const { Schema } = mongoose;
 
 const todoSchema = new Schema({
   content: {
-    type: 'string',
-    require: true
+    type: 'string'
   },
   color: String,
   checked: {
