@@ -2,14 +2,14 @@ const express = require('express');
 const mongoose = require('mongoose');
 const keys = require('./config/keys');
 const bodyParser = require('body-parser');
+require('./models/Todo');
+
+mongoose.connect(keys.mongoURI);
 
 const app = express();
 app.use(bodyParser.json());
 
-require('./models/Todo');
 require('./routes/controlRoutes')(app);
-
-mongoose.connect(keys.mongoURI);
 
 if (process.env.NODE_ENV === 'production') {
   // Express will serve up production assets
